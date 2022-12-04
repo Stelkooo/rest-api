@@ -39,4 +39,16 @@ router.post(
   }),
 );
 
+// Returns a list of all the courses
+router.get(
+  '/courses',
+  asyncHandler(async (req, res) => {
+    const courses = await Course.findAll();
+
+    res.status(200).json({
+      message: courses,
+    });
+  }),
+);
+
 module.exports = router;
