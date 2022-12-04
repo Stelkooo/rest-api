@@ -83,4 +83,23 @@ router.post(
   }),
 );
 
+// Updates an existing course
+router.put(
+  '/courses/:id',
+  asyncHandler(async (req, res) => {
+    try {
+      const course = await Course.findByPk(req.params.id);
+      course.update(req.body);
+      res.status(204).json();
+    } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        const errors = error.errors.map((err) => err.message);
+        res.status(400).json({ errors });
+      } else {
+        throw error;
+      }
+    }
+  }),
+);
+
 module.exports = router;
