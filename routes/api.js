@@ -63,4 +63,24 @@ router.get(
   }),
 );
 
+// Creates a new course
+router.post(
+  '/courses',
+  asyncHandler(async (req, res) => {
+    try {
+      const course = await Course.create(req.body);
+      res.status(201).json({
+        message: 'Course created successfully',
+      });
+    } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        const errors = error.errors.map((err) => err.message);
+        res.status(400).json({ errors });
+      } else {
+        throw error;
+      }
+    }
+  }),
+);
+
 module.exports = router;
