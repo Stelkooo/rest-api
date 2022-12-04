@@ -51,4 +51,16 @@ router.get(
   }),
 );
 
+// Returns a specific course
+router.get(
+  '/courses/:id',
+  asyncHandler(async (req, res) => {
+    const course = await Course.findByPk(req.params.id);
+
+    res.status(200).json({
+      message: course,
+    });
+  }),
+);
+
 module.exports = router;
