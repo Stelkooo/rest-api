@@ -48,7 +48,9 @@ router.post(
 router.get(
   '/courses',
   asyncHandler(async (req, res) => {
-    const courses = await Course.findAll();
+    const courses = await Course.findAll({
+      attributes: ['id', 'title', 'description', 'materialsNeeded', 'userId'],
+    });
 
     res.status(200).json({
       message: courses,
@@ -60,7 +62,9 @@ router.get(
 router.get(
   '/courses/:id',
   asyncHandler(async (req, res) => {
-    const course = await Course.findByPk(req.params.id);
+    const course = await Course.findByPk(req.params.id, {
+      attributes: ['id', 'title', 'description', 'materialsNeeded', 'userId'],
+    });
 
     res.status(200).json({
       message: course,
