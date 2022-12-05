@@ -27,9 +27,7 @@ router.post(
   asyncHandler(async (req, res) => {
     try {
       await User.create(req.body);
-      res.status(201).json({
-        message: 'User created successfully',
-      });
+      res.redirect(201, '/');
     } catch (error) {
       if (
         error.name === 'SequelizeValidationError' ||
