@@ -70,6 +70,7 @@ router.get(
 // Creates a new course
 router.post(
   '/courses',
+  authenticateUser,
   asyncHandler(async (req, res) => {
     try {
       const course = await Course.create(req.body);
