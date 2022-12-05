@@ -91,7 +91,7 @@ router.post(
   asyncHandler(async (req, res) => {
     try {
       const course = await Course.create(req.body);
-      res.status(201).json();
+      res.redirect(201, `/courses/${course.id}`);
     } catch (error) {
       if (error.name === 'SequelizeValidationError') {
         const errors = error.errors.map((err) => err.message);
