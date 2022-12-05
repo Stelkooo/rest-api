@@ -96,10 +96,15 @@ router.put(
   '/courses/:id',
   authenticateUser,
   asyncHandler(async (req, res) => {
+    const currentUserId = req.currentUser.id;
     try {
       const course = await Course.findByPk(req.params.id);
-      await course.update(req.body);
-      res.status(204).json();
+      if (currentUserId === course.userId) {
+        await course.update(req.body);
+        res.status(204).json();
+      } else {
+        res.status(403).json();
+      }
     } catch (error) {
       if (error.name === 'SequelizeValidationError') {
         const errors = error.errors.map((err) => err.message);
@@ -117,10 +122,15 @@ router.delete(
   '/courses/:id',
   authenticateUser,
   asyncHandler(async (req, res) => {
+    const currentUserId = req.currentUser.id;
     try {
       const course = await Course.findByPk(req.params.id);
-      await course.destroy();
-      res.status(204).json();
+      if (currentUserId === course.userId) {
+        await course.destroy();
+        res.status(204).json();
+      } else {
+        res.status(403).json();
+      }
     } catch (error) {
       throw error;
     }
