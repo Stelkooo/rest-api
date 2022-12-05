@@ -47,6 +47,13 @@ router.get(
   '/courses',
   asyncHandler(async (req, res) => {
     const courses = await Course.findAll({
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['firstName', 'lastName', 'emailAddress'],
+        },
+      ],
       attributes: ['id', 'title', 'description', 'materialsNeeded', 'userId'],
     });
 
