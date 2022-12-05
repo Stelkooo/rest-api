@@ -6,8 +6,30 @@ module.exports = (sequelize, DataTypes) => {
   class Course extends Model {}
   Course.init(
     {
-      title: DataTypes.STRING,
-      description: DataTypes.TEXT,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Title is required',
+          },
+          notEmpty: {
+            msg: 'Please provide a title',
+          },
+        },
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Description is required',
+          },
+          notEmpty: {
+            msg: 'Please provide a description',
+          },
+        },
+      },
       materialsNeeded: DataTypes.STRING,
       userId: DataTypes.INTEGER,
     },
