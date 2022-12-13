@@ -27,7 +27,7 @@ router.post(
   asyncHandler(async (req, res) => {
     try {
       await User.create(req.body);
-      res.status(201).redirect('/');
+      res.status(201).location('/').end();
     } catch (error) {
       if (
         error.name === 'SequelizeValidationError' ||
@@ -91,7 +91,7 @@ router.post(
   asyncHandler(async (req, res) => {
     try {
       const course = await Course.create(req.body);
-      res.status(201).redirect(`courses/${course.id}`);
+      res.status(201).location(`courses/${course.id}`).end();
     } catch (error) {
       if (error.name === 'SequelizeValidationError') {
         const errors = error.errors.map((err) => err.message);
