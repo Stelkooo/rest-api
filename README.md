@@ -39,7 +39,7 @@ In a future project I will be using React.js to create a front end client which 
 
 ## Contact
 
-Your Name - [Stilyan Toskov](https://linkedin.com/in/stilyan-toskov) - stilyanmtoskov@gmail.com
+[Stilyan Toskov](https://linkedin.com/in/stilyan-toskov) - stilyanmtoskov@gmail.com
 
 Project Link: [https://github.com/Stelkooo/rest-api](https://github.com/Stelkooo/full-stack-app-with-react-and-a-rest-api)
 
